@@ -18,7 +18,7 @@ pipeline{
     stages{
         stage('exe gen'){
             steps{
-                    bat ("python jenkins_oper.py -p ${params.Target_branch} -t ${params.Polarion_ID}")
+                    bat ("${python} jenkins_oper.py -p ${params.Target_branch} -t ${params.Polarion_ID}")
             }
             
     }
