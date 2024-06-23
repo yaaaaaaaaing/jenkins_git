@@ -19,18 +19,18 @@ def find_mr(target_branch,PolarionId,repo):
 
 
 def CollectCode_and_PushCommits(merge_commit_sha_list,target_branch):
-    target_path = "../jenkins_test"
+    target_path = "./jenkins_test"
     if os.path.exists(target_path):
         os.remove(target_path)
-    cmd = f"cd ../ && git clone git@github.com:yaaaaaaaaing/jenkins_test.git -b {target_branch}"
+    cmd = f"git clone git@github.com:yaaaaaaaaing/jenkins_test.git -b {target_branch}"
     os.system(cmd)
     local_repo = git.Repo(target_path)
     for commit_sha in merge_commit_sha_list:
         local_repo.git.cherry_pick(commit_sha)
 
 def RunProject_and_UpdateStatus(merge_commit_sha_list,repo):
-    python = '..\jenkins_test\virtual_py\Scripts\python.exe'
-    cmd = "cd..\jenkins_test && python python_code.py"
+    python = '.\jenkins_test\virtual_py\Scripts\python.exe'
+    cmd = "cd.\jenkins_test && python python_code.py"
     cwd = os.getcwd()
     if os.system(cmd) == 0:
         run_result = 0
