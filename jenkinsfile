@@ -1,0 +1,26 @@
+def python = '.\\virtual_py\\Scripts\\python.exe'
+
+pipeline{
+    agent any
+    parameters{
+       string(
+         name: 'Polarion_ID',
+         defaultValue: '', 
+         description: 'Which Polarion ID do you want to building?'
+       )
+       string(
+         name: 'Target_branch',
+         defaultValue: '', 
+         description: 'Which target branch do you want to building?'
+       )
+    }
+    
+    stages{
+        stage('exe gen'){
+            steps{
+                    bat ("python jenkins_oper.py -p ${params.Target_branch} -t ${params.Polarion_ID}")
+            }
+            
+    }
+}
+}
